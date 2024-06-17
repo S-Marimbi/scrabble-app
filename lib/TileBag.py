@@ -23,7 +23,7 @@ class Bag:
         random.shuffle(tiles)
         return tiles
 
-    # Draw a tile from the bag
+    # Drawing a tile from the bag
     def draw_tile(self):
         if self.tiles:
             return self.tiles.pop()
