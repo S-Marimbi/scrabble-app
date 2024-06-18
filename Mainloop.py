@@ -16,9 +16,11 @@ def is_valid_word(word, word_list):
 # Generate a valid random word from the computer's rack
 def generate_computer_word(rack, word_list):
     rack_letters = [tile.get_letter() for tile in rack]
-    random.shuffle(rack_letters)
+    random.shuffle(rack_letters) # shuffling happens once
+    # Iterating through each word, check if char in word match char in the rack
     for word in word_list:
         if all(rack_letters.count(char) >= word.count(char) for char in word):
+            # Return valid word
             return word
     return None
 
