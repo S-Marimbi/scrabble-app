@@ -44,7 +44,7 @@ direction_vertical = 'vertical'
 play_turn(word_vertical, row_vertical, col_vertical, direction_vertical)
 print("\nBoard after placing tiles vertically:")
 print_board(board)
-if name == "main":
+if __name__ == "__main__":
     main()
 
 #Assign point values to each letter tile
@@ -81,7 +81,7 @@ def main():
 
 # total_score = calculate_total_score(words, special_tiles)
 # print("Total Score for the turn:", total_score)
-   if name == "main":
+   if __name__ == "__main__":
      main()
 
 
