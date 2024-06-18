@@ -1,4 +1,4 @@
- # Define the size of the Scrabble board
+#Define the size of the Scrabble board
 BOARD_SIZE = 15
 
 #Initialize an empty board
@@ -24,8 +24,8 @@ def play_turn(word, row, col, direction):
 def main():
 
 # Print empty board
-print("Empty Board:")
-print_board(board)
+   print("Empty Board:")
+   print_board(board)
 
 # Example of placing tiles horizontally
 word_horizontal = "HELLO"
@@ -82,4 +82,8 @@ def main():
 # total_score = calculate_total_score(words, special_tiles)
 # print("Total Score for the turn:", total_score)
    if name == "main":
-    main()
+     main()
+
+
+
+
