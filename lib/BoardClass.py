@@ -97,6 +97,7 @@ class Board:
 
     def place_word(self, word, location, direction, player):
         x, y = location
+        tiles_used = 0
         for i, letter in enumerate(word):
             if direction == "right":
                 self.board[x][y + i] = f" {letter} "
