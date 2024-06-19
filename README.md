@@ -1,19 +1,23 @@
 # scrabble-app
 ## SCRABBLE
 Programming Language: Python 3. x
+When you start the game one types python3 mainloop.py
 
 Minimum Viable Product (MVP) Features:
-*Single-player mode: Ability to play against the PC.
+*Single-player mode: Ability to play against the PC on the terminal.
 *Game board: A clear and intuitive representation of the Scrabble board, with bonus squares and letter point values.
 *Score Calculation: Automatically calculates and displays scores after each move.
 *Words library: A dictionary of valid Scrabble words that can be used for verification and suggestions during gameplay.
-
-Single-player mode: Ability to play against the PC on the terminal
+*Each player starts with 7 tiles(Human vs PC)
+*The human user should be able to see their hand and their 7 tiles on their rack and the computer as well
+*The human user should be able to see his/her moves and the computer moves
+*The user should be able to see the remaining tiles when each user plays.
+*The user should be able to see the player who won and the player's score(either the computer or human)
 
 The board has 15 rows, and 15 columns, each numbered from 0 to 14. 
- Each player starts with 7 tiles(Human vs PC)
+
  
-* The first player puts a word (not less than 2 letters) on the board. It must be on the center star and every word after that has to be connected to an already-played word. (left to right, up to down)
+* The first player puts a word (not less than 2 letters) on the board. 
 * If you play on a bonus square, you get more points. (double letter, triple letter, double word, triple word)
 •  When you can’t think of any words, you can trade in your tiles for new ones (but you lose your turn).
 * You can use a blank tile for any letter. (0 points for blank letters)
