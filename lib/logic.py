@@ -39,7 +39,7 @@ print_board(board)
 # Example of placing tiles vertically
 word_vertical = "WORLD"
 row_vertical = 6
-col_vertical = 8
+col_vertical = 10
 direction_vertical = 'vertical'
 play_turn(word_vertical, row_vertical, col_vertical, direction_vertical)
 print("\nBoard after placing tiles vertically:")
