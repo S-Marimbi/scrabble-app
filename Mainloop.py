@@ -131,9 +131,6 @@ def main():
             row = int(input("Enter starting row (0-14): "))
             col = int(input("Enter starting column (0-14): "))
             
-            if row != 7 or col != 7:
-                print("You must start from the center tile (row 7, column 7). Please try again.")
-                continue
             
             board.place_word(word, (row, col), direction, human_player)
             pass_count[0] = 0
