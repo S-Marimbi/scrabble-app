@@ -4,16 +4,16 @@ from lib.PlayerClass import Player
 from lib.endgame import game_over, display_final_scores, declare_winner
 import random
 
-Load the word list from dictionary.txt
+#Load the word list from dictionary.txt
 def load_words(filename):
     with open(filename, 'r') as file:
         return [line.strip().upper() for line in file]
 
-Validate if a word is in the dictionary
+#Validate if a word is in the dictionary
 def is_valid_word(word, word_list):
     return word in word_list
 
-Generate a valid random word from the computer's rack
+#Generate a valid random word from the computer's rack
 def generate_computer_word(rack, word_list):
     rack_letters = [tile.get_letter() for tile in rack]
     random.shuffle(rack_letters)
@@ -22,7 +22,7 @@ def generate_computer_word(rack, word_list):
             return word
     return None
 
-Generate a hint for the human player
+#Generate a hint for the human player
 def generate_hint(rack, word_list):
     rack_letters = [tile.get_letter() for tile in rack]
     for word in word_list:
