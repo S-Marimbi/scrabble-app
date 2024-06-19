@@ -16,11 +16,9 @@ def is_valid_word(word, word_list):
 # Generate a valid random word from the computer's rack
 def generate_computer_word(rack, word_list):
     rack_letters = [tile.get_letter() for tile in rack]
-    random.shuffle(rack_letters) # shuffling happens once
-    # Iterating through each word, check if char in word match char in the rack
+    random.shuffle(rack_letters)
     for word in word_list:
         if all(rack_letters.count(char) >= word.count(char) for char in word):
-            # Return valid word
             return word
     return None
 
@@ -31,6 +29,63 @@ def generate_hint(rack, word_list):
         if all(rack_letters.count(char) >= word.count(char) for char in word):
             return word
     return None
+
+def check_valid_placement(word, position, direction, board, rack_arr, is_human_turn):
+    row, col = position
+    score = 0
+    word_length = len(word)
+    if direction not in ['right', 'down']:
+        return False, 0
+
+    if (direction == 'right' and col + word_length > 15) or (direction == 'down' and row + word_length > 15):
+        return False, 0
+
+    # Ensure connection to existing tiles
+    connects = False
+    temp_rack_arr = list(rack_arr)
+
+    for i, letter in enumerate(word):
+        new_row, new_col = (row, col + i) if direction == 'right' else (row + i, col)
+        if board.board[new_row][new_col].strip():  # Check if the board position is not empty
+            if board.board[new_row][new_col].strip() != letter:
+                return False, 0
+            connects = True
+        else:
+            if letter not in temp_rack_arr:
+                return False, 0
+            temp_rack_arr.remove(letter)
+            score += ord(letter) - ord('A') + 1
+
+    if is_human_turn and not connects and not board.board[7][7].strip():  # Human must start from center star
+        return False, 0
+        
+
+    if not is_human_turn and not connects:
+        # Check if the computer connects to any existing human tile
+        connects_to_human_tile = False
+        for i, letter in enumerate(word):
+            new_row, new_col = (row, col + i) if direction == 'right' else (row + i, col)
+            if new_row == 7 and new_col == 7:  # Center star is always considered connected
+                connects_to_human_tile = True
+                break
+            if new_row > 0 and board.board[new_row - 1][new_col].strip():  # Check tile above
+                connects_to_human_tile = True
+                break
+            if new_row < 14 and board.board[new_row + 1][new_col].strip():  # Check tile below
+                connects_to_human_tile = True
+                break
+            if new_col > 0 and board.board[new_row][new_col - 1].strip():  # Check tile to the left
+                connects_to_human_tile = True
+                break
+            if new_col < 14 and board.board[new_row][new_col + 1].strip():  # Check tile to the right
+                connects_to_human_tile = True
+                break
+        
+        if not connects_to_human_tile:
+            return False, 0
+
+    return True, score
+
 
 def main():
     # Load words from the dictionary.txt
@@ -60,24 +115,30 @@ def main():
         print("Human's turn")
         print_game_state()
         while True:
-            action = input("Enter 'P' to pass, 'H' for a hint, or any word to play: ").upper()
-            if action == 'P':
-                pass_count[0] += 1
-                return 'pass'
-            elif action == 'H':
-                hint = generate_hint(human_player.get_rack_arr(), word_list)
-                print(f"Hint: try to form a word with these letters - {hint}")
-            else:
-                word = action
-                if not is_valid_word(word, word_list):
-                    print("Invalid word. Please try again.")
-                    continue
-                direction = input("Enter direction (right/down): ").lower()
-                row = int(input("Enter starting row (0-14): "))
-                col = int(input("Enter starting column (0-14): "))
-                board.place_word(word, (row, col), direction, human_player)
-                pass_count[0] = 0
-                return 'played'
+           action = input("Enter 'P' to pass, 'H' for a hint, or any word to play: ").upper()
+           if action == 'P':
+            pass_count[0] += 1
+            return 'pass'
+           elif action == 'H':
+            hint = generate_hint(human_player.get_rack_arr(), word_list)
+            print(f"Hint: try to form a word with these letters - {hint}")
+           else:
+            word = action
+            if not is_valid_word(word, word_list):
+                print("Invalid word. Please try again.")
+                continue
+            direction = input("Enter direction (right/down): ").lower()
+            row = int(input("Enter starting row (0-14): "))
+            col = int(input("Enter starting column (0-14): "))
+            
+            if row != 7 or col != 7:
+                print("You must start from the center tile (row 7, column 7). Please try again.")
+                continue
+            
+            board.place_word(word, (row, col), direction, human_player)
+            pass_count[0] = 0
+            return 'played'
+
 
     # Human player's turn with an option to pass a play turn or request for a hint
     def computer_turn():
