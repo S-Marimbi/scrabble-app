@@ -1,3 +1,4 @@
+import os
 from .logic import calculate_word_score
 
 class Board:
@@ -9,15 +10,37 @@ class Board:
         # as well as adds in the premium squares.
         self.board = [["   " for _ in range(15)] for _ in range(15)]
         self.add_premium_squares()
-        self.board[7][7] = " * "  # Center star where the first word must cross
+        self.board[7][7] = "  X "  # Center star where the first word must cross
 
     def get_board(self):
-        # Returns the board in string form.
-        board_str = ""
-        for i in range(15):
-            board_str += " | ".join(self.board[i]) + "\n"
-        return board_str
+        # Define the width of each cell for consistent alignment
+        cell_width = 5  # Adjust as needed based on your board content
 
+        # Prepare a header row with column numbers
+        header = "     " + " | ".join(f"{i:<{cell_width}}" for i in range(15))
+        separator = "  " + "+".join("-" * (cell_width + 1) for _ in range(15))
+
+        # Initialize board_str with the header and separator
+        board_str = header + "\n" + separator + "\n"
+
+        # Iterate through each row of the board
+        for i in range(15):
+ 
+        # Construct the row header (row number) and content with cell values
+            row_header = f"{i:<2} | "
+            row_content = " | ".join(f"{self.board[i][j]:<{cell_width}}" for j in range(15))
+            row_str = row_header + row_content
+
+        # Append the row to board_str
+            board_str += row_str + "\n"
+
+        # Add separator after each row (including the last one)
+            board_str += separator + "\n"           
+
+            
+
+        return board_str
+ 
     def add_premium_squares(self):
         """
          Adds all of the premium squares that influence the word's score.
@@ -97,7 +120,6 @@ class Board:
 
     def place_word(self, word, location, direction, player):
         x, y = location
-        tiles_used = 0
         for i, letter in enumerate(word):
             if direction == "right":
                 self.board[x][y + i] = f" {letter} "
@@ -115,3 +137,6 @@ class Board:
                 if tile.get_letter() == letter:
                     player.remove_from_rack(tile)
         player.replenish_rack()
+
+
+   
