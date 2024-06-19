@@ -17,20 +17,27 @@ Scrabble-Game-Project/
 
 
 ## File Descriptions
--mainloop.py: Contains the main game loop, including player turns, word placement, and game over conditions.
--lib/BagClass.py: Defines the Bag class to handle the tile bag operations.
--lib/BoardClass.py: Defines the Board class to handle the game board operations.
--lib/PlayerClass.py: Defines the Player class to manage player-related operations.
--lib/TileBag.py: Contains the tile distribution and defines the Tile class.
--lib/endgame.py: Contains functions to handle the end game logic, such as determining the winner and displaying final scores.
--dictionary.txt: A text file containing the list of valid words for the game.
+#### mainloop.py: 
+ -Contains the main game loop, including player turns, word placement, and game over conditions.
+#### lib/BagClass.py:
+ -Defines the Bag class to handle the tile bag operations.
+#### lib/BoardClass.py: 
+ -Defines the Board class to handle the game board operations.
+#### lib/PlayerClass.py: 
+ -Defines the Player class to manage player-related operations.
+#### lib/TileBag.py: 
+ -Contains the tile distribution and defines the Tile class.
+#### lib/endgame.py: 
+ -Contains functions to handle the end game logic, such as determining the winner and displaying final scores.
+#### dictionary.txt: 
+ -A text file containing the list of valid words for the game.
 
 ## How to Run the Game
-1.Install Python: Make sure you have Python installed on your system.
-2.Download the Project: Download or clone the project to your local machine.
-3.Run the Game:
-Navigate to the project directory.
-Execute the following command in your terminal or command prompt:
+#### Install Python: Make sure you have Python installed on your system.
+#### Download the Project: Download or clone the project to your local machine.
+#### Run the Game:
+-Navigate to the project directory.
+-Execute the following command in your terminal or command prompt:
 
      python3 mainloop.py
 
