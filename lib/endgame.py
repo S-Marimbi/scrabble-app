@@ -9,9 +9,9 @@ def display_final_scores(players):
 
 def declare_winner(players):
     if players[0].score > players[1].score:
-        print(f"{players[0].name} wins!")
+        print(f"CONGRATULATIONS {players[0].name}, YOU WIN!")
     elif players[0].score < players[1].score:
-        print(f"{players[1].name} wins!")
+        print(f"CONGRATULATIONS {players[1].name}, YOU WIN!")
     else:
         print("It's a tie!")
 
