@@ -18,7 +18,7 @@ class Board:
 
         # Prepare a header row with column numbers
         header = "     " + " | ".join(f"{i:<{cell_width}}" for i in range(15))
-        separator = "  " + "+".join("-" * (cell_width + 1) for _ in range(15))
+        separator = "  " + "+".join("-" * (cell_width + 2) for _ in range(15))
 
         # Initialize board_str with the header and separator
         board_str = header + "\n" + separator + "\n"
