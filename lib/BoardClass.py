@@ -126,17 +126,6 @@ def is_valid_placement(self, word, location, direction, round_number, first_turn
         return "Please connect the word to a previously played letter."
 
     return True  
-def check_adjacent_words(self, word, location, direction):
-    x, y = location
-    for i, letter in enumerate(word):
-        adj_x, adj_y = (x, y + i) if direction == "right" else (x + i, y)
-        if direction == "right":
-            if (adj_x > 0 and self.board[adj_x - 1][adj_y].strip()) or (adj_x < 14 and self.board[adj_x + 1][adj_y].strip()):
-                return True
-        elif direction == "down":
-            if (adj_y > 0 and self.board[adj_x][adj_y - 1].strip()) or (adj_y < 14 and self.board[adj_x][adj_y + 1].strip()):
-                return True
-    return False
 
 def place_word(self, word, location, direction, player):
     x, y = location
@@ -147,7 +136,7 @@ def place_word(self, word, location, direction, player):
             self.board[x + i][y] = f" {letter} "
 
     # Calculate the score for the placed word
-    special_tiles = {}  # Add logic to handle special tiles if needed
+    special_tiles = {}  
     word_score = calculate_word_score(word, special_tiles)
     player.update_score(word_score)
 
