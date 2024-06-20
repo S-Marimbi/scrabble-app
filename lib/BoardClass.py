@@ -138,20 +138,6 @@ def check_adjacent_words(self, word, location, direction):
                 return True
     return False
 
-def can_place_word(self, word, location, direction):
-    x, y = location
-    if direction not in ["right", "down"]:
-        return False
-
-    for i, letter in enumerate(word):
-        if direction == "right":
-            if y + i >= 15 or (self.board[x][y + i].strip() and self.board[x][y + i].strip() != letter):
-                return False
-        elif direction == "down":
-            if x + i >= 15 or (self.board[x + i][y].strip() and self.board[x + i][y].strip() != letter):
-                return False
-    return True
-
 def place_word(self, word, location, direction, player):
     x, y = location
     for i, letter in enumerate(word):
